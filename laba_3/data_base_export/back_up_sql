@@ -1,0 +1,296 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1)
+-- Dumped by pg_dump version 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1)
+
+-- Started on 2023-03-10 08:11:14 MSK
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 210 (class 1259 OID 16484)
+-- Name: chairs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.chairs (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    deanery character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.chairs OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16483)
+-- Name: chairs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.chairs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.chairs_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3378 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: chairs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.chairs_id_seq OWNED BY public.chairs.id;
+
+
+--
+-- TOC entry 212 (class 1259 OID 16530)
+-- Name: student_groups; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.student_groups (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    chair character varying(255) NOT NULL,
+    chair_id integer NOT NULL
+);
+
+
+ALTER TABLE public.student_groups OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 16529)
+-- Name: student_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.student_groups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.student_groups_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3379 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: student_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.student_groups_id_seq OWNED BY public.student_groups.id;
+
+
+--
+-- TOC entry 214 (class 1259 OID 16544)
+-- Name: students; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.students (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    passport character varying(10) NOT NULL,
+    group_name character varying(255) NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.students OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 16543)
+-- Name: students_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.students_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.students_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3380 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: students_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.students_id_seq OWNED BY public.students.id;
+
+
+--
+-- TOC entry 3217 (class 2604 OID 16487)
+-- Name: chairs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chairs ALTER COLUMN id SET DEFAULT nextval('public.chairs_id_seq'::regclass);
+
+
+--
+-- TOC entry 3218 (class 2604 OID 16533)
+-- Name: student_groups id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_groups ALTER COLUMN id SET DEFAULT nextval('public.student_groups_id_seq'::regclass);
+
+
+--
+-- TOC entry 3219 (class 2604 OID 16547)
+-- Name: students id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.students ALTER COLUMN id SET DEFAULT nextval('public.students_id_seq'::regclass);
+
+
+--
+-- TOC entry 3368 (class 0 OID 16484)
+-- Dependencies: 210
+-- Data for Name: chairs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.chairs VALUES (1, 'math', 'Kyznetsov Vasiliy Victorovich');
+INSERT INTO public.chairs VALUES (2, 'informatics', 'Ivanov Dmitriy Sergeevich');
+
+
+--
+-- TOC entry 3370 (class 0 OID 16530)
+-- Dependencies: 212
+-- Data for Name: student_groups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.student_groups VALUES (1, 'VMK2204', 'math', 1);
+INSERT INTO public.student_groups VALUES (2, 'KMS', 'math', 1);
+INSERT INTO public.student_groups VALUES (3, 'UNM16', 'informatics', 2);
+INSERT INTO public.student_groups VALUES (4, 'TMS54', 'informatics', 2);
+
+
+--
+-- TOC entry 3372 (class 0 OID 16544)
+-- Dependencies: 214
+-- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.students VALUES (1, 'Ivan', '1234567890', 'VMK2204', 1);
+INSERT INTO public.students VALUES (2, 'Vasiliy', '1234567891', 'VMK2204', 1);
+INSERT INTO public.students VALUES (3, 'Dmitriy', '1234567892', 'VMK2204', 1);
+INSERT INTO public.students VALUES (4, 'Maria', '1234567893', 'VMK2204', 1);
+INSERT INTO public.students VALUES (5, 'Natalia', '1234567894', 'VMK2204', 1);
+INSERT INTO public.students VALUES (6, 'Petr', '3223223220', 'KMS', 2);
+INSERT INTO public.students VALUES (7, 'Ivan', '3223223221', 'KMS', 2);
+INSERT INTO public.students VALUES (8, 'Alex', '3223223222', 'KMS', 2);
+INSERT INTO public.students VALUES (9, 'Vladimir', '3223223223', 'KMS', 2);
+INSERT INTO public.students VALUES (10, 'Maxim', '3223223224', 'KMS', 2);
+INSERT INTO public.students VALUES (11, 'Daria', '2282282280', 'UNM16', 3);
+INSERT INTO public.students VALUES (12, 'Rosa', '2282282281', 'UNM16', 3);
+INSERT INTO public.students VALUES (13, 'Ivan', '2282282282', 'UNM16', 3);
+INSERT INTO public.students VALUES (14, 'Anastasia', '2282282283', 'UNM16', 3);
+INSERT INTO public.students VALUES (15, 'Mihail', '2282282284', 'UNM16', 3);
+INSERT INTO public.students VALUES (16, 'Vladislav', '7776667770', 'TMS54', 4);
+INSERT INTO public.students VALUES (17, 'Nikita', '7776667771', 'TMS54', 4);
+INSERT INTO public.students VALUES (18, 'Dmitriy', '7776667772', 'TMS54', 4);
+INSERT INTO public.students VALUES (19, 'Roman', '7776667773', 'TMS54', 4);
+INSERT INTO public.students VALUES (20, 'Yan', '7776667774', 'TMS54', 4);
+
+
+--
+-- TOC entry 3381 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: chairs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.chairs_id_seq', 2, true);
+
+
+--
+-- TOC entry 3382 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: student_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.student_groups_id_seq', 4, true);
+
+
+--
+-- TOC entry 3383 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: students_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.students_id_seq', 20, true);
+
+
+--
+-- TOC entry 3221 (class 2606 OID 16491)
+-- Name: chairs chairs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chairs
+    ADD CONSTRAINT chairs_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3223 (class 2606 OID 16537)
+-- Name: student_groups student_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_groups
+    ADD CONSTRAINT student_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3225 (class 2606 OID 16551)
+-- Name: students students_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.students
+    ADD CONSTRAINT students_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3226 (class 2606 OID 16538)
+-- Name: student_groups student_groups_chair_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_groups
+    ADD CONSTRAINT student_groups_chair_id_fkey FOREIGN KEY (chair_id) REFERENCES public.chairs(id);
+
+
+--
+-- TOC entry 3227 (class 2606 OID 16552)
+-- Name: students students_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.students
+    ADD CONSTRAINT students_group_id_fkey FOREIGN KEY (group_id) REFERENCES public.student_groups(id);
+
+
+-- Completed on 2023-03-10 08:11:14 MSK
+
+--
+-- PostgreSQL database dump complete
+--
+
