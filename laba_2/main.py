@@ -1,7 +1,6 @@
 import requests
 
-
-from config import ID
+from conf import ID
 
 
 city = 'Moscow,RU'
