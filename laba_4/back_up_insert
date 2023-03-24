@@ -5,7 +5,7 @@
 -- Dumped from database version 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1)
 -- Dumped by pg_dump version 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1)
 
--- Started on 2023-03-24 04:06:53 MSK
+-- Started on 2023-03-24 04:23:16 MSK
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -86,19 +86,17 @@ ALTER TABLE ONLY service.users ALTER COLUMN id SET DEFAULT nextval('service.user
 -- Data for Name: users; Type: TABLE DATA; Schema: service; Owner: postgres
 --
 
-COPY service.users (id, full_name, login, password) FROM stdin;
-1	Ivanov Ivan	ivanov	123456
-2	Ivanov Oleg	IvOleg	123456
-3	Minov Alex	minA	1123456
-4	Sidorov Dmitriy	sidr	2123456
-5	Sonin Michael	son	3123456
-6	Dubnikov Igor	dub	4123456
-7	Mavrin Ivan	Mava	5123456
-8	Popkov Nikita	nekit	6123456
-9	Zubkov Vitaliy	zub	7123456
-10	Kovalev Evgeniy	koval	8123456
-11	Kostin Pavel	Pasha	9123456
-\.
+INSERT INTO service.users VALUES (1, 'Ivanov Ivan', 'ivanov', '123456');
+INSERT INTO service.users VALUES (2, 'Ivanov Oleg', 'IvOleg', '123456');
+INSERT INTO service.users VALUES (3, 'Minov Alex', 'minA', '1123456');
+INSERT INTO service.users VALUES (4, 'Sidorov Dmitriy', 'sidr', '2123456');
+INSERT INTO service.users VALUES (5, 'Sonin Michael', 'son', '3123456');
+INSERT INTO service.users VALUES (6, 'Dubnikov Igor', 'dub', '4123456');
+INSERT INTO service.users VALUES (7, 'Mavrin Ivan', 'Mava', '5123456');
+INSERT INTO service.users VALUES (8, 'Popkov Nikita', 'nekit', '6123456');
+INSERT INTO service.users VALUES (9, 'Zubkov Vitaliy', 'zub', '7123456');
+INSERT INTO service.users VALUES (10, 'Kovalev Evgeniy', 'koval', '8123456');
+INSERT INTO service.users VALUES (11, 'Kostin Pavel', 'Pasha', '9123456');
 
 
 --
@@ -110,7 +108,7 @@ COPY service.users (id, full_name, login, password) FROM stdin;
 SELECT pg_catalog.setval('service.users_id_seq', 11, true);
 
 
--- Completed on 2023-03-24 04:06:53 MSK
+-- Completed on 2023-03-24 04:23:16 MSK
 
 --
 -- PostgreSQL database dump complete
