@@ -24,12 +24,12 @@ def login():
     password = request.form.get('password')
 
     if username == '' or password == '':
-        return render_template('blank.html')
+        return render_template('account.html', error='Login and password must be not blank')
 
     cursor.execute("SELECT * FROM service.users WHERE login=%s AND password=%s", (str(username), str(password)))
     records = list(cursor.fetchall())
 
     if len(records) == 0:
-        return render_template('stranger.html')
+        return render_template('account.html', error='Wrong login or password')
 
     return render_template('account.html', full_name=records[0][1], login=records[0][2], password=records[0][3])
