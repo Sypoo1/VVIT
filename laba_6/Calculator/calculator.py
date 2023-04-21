@@ -53,7 +53,7 @@ class Calculator(QWidget):
         self.hbox_third.addWidget(self.b_0)
 
         self.b_decimal = QPushButton(".", self)
-        self.hbox_third.addWidget(self.b_decimal)        
+        self.hbox_third.addWidget(self.b_decimal)
 
         self.b_plus = QPushButton("+", self)
         self.hbox_first.addWidget(self.b_plus)
@@ -74,7 +74,7 @@ class Calculator(QWidget):
         self.b_minus.clicked.connect(lambda: self._operation("-"))
         self.b_mult.clicked.connect(lambda: self._operation("*"))
         self.b_div.clicked.connect(lambda: self._operation("/"))
-        self.b_result.clicked.connect(self._result)        
+        self.b_result.clicked.connect(self._result)
 
         self.b_1.clicked.connect(lambda: self._button("1"))
         self.b_2.clicked.connect(lambda: self._button("2"))
@@ -84,7 +84,7 @@ class Calculator(QWidget):
         self.b_6.clicked.connect(lambda: self._button("6"))
         self.b_7.clicked.connect(lambda: self._button("7"))
         self.b_8.clicked.connect(lambda: self._button("8"))
-        self.b_9.clicked.connect(lambda: self._button("9"))        
+        self.b_9.clicked.connect(lambda: self._button("9"))
         self.b_0.clicked.connect(lambda: self._button("0"))
         self.b_decimal.clicked.connect(lambda: self._button("."))
 
