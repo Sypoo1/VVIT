@@ -85,7 +85,8 @@ def insert_into_timetable(tuples):
     conn.commit()
     
 def get_schedule():
-        cursor.execute('select t.id, t.week, t.day, t.subject,  t.room_numb, t.start_time, te.full_name from timetable t join subject s on s.name=t.subject join teacher te on s.name=te.subject order by 1;')
+        cursor.execute('select t.id, t.week, t.day, t.subject,  t.room_numb, t.start_time,\
+            te.full_name from timetable t join subject s on s.name=t.subject join teacher te on s.name=te.subject order by 1;')
         records = list(cursor.fetchall())
         return records
     
